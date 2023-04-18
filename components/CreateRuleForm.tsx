@@ -14,11 +14,11 @@ const CreateRuleForm: React.FC<CreateRuleFormProps> = ({ onSubmit }) => {
     const [pattern, setPattern] = useState('');
     const [providerId, setProviderId] = useState('');
     const [existingProviderId, setExistingProviderId] = useState('');
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState('');
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        onSubmit({ pattern, providerId, existingProviderId, amount });
+        onSubmit({ pattern, providerId, existingProviderId, amount: parseFloat(amount), });
     };
 
     return (
@@ -56,10 +56,9 @@ const CreateRuleForm: React.FC<CreateRuleFormProps> = ({ onSubmit }) => {
             <FormGroup label="Amount" labelFor="amount-input">
                 <InputGroup
                     id="amount-input"
-                    type="number"
                     placeholder="Enter amount"
                     value={amount}
-                    onChange={(e) => setAmount(parseInt(e.target.value, 10))}
+                    onChange={(e) => setAmount(e.target.value)}
                 />
             </FormGroup>
             <Button type="submit" intent="primary" text="Create Rule" />
